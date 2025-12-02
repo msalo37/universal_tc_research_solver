@@ -561,7 +561,7 @@
 	var grid_size = 5;
 
 	/* Drawing hexagon at coords */
-	function draw_hexagon(x, y, side_len, lineWidth = 1, lineColor = '#000000', fillColor = '#FFFFFF', pointing_up = false) {
+	function draw_hexagon(x, y, side_len, lineWidth = 1, lineColor = '#000000', fillColor = '#bfbfbf', pointing_up = false) {
 		//console.debug("side_len: " + side_len)
 		side_len -= Math.ceil(lineWidth / 2) + 1;
 		var triangle_height = Math.sqrt(Math.pow(side_len, 2) - Math.pow(side_len / 2, 2));
@@ -936,7 +936,7 @@
 		}
 		if (found) {
 			remove_from_aspect_table(aspect);
-			document.getElementById('aspect_image_' + id).style.filter = 'brightness(25%)';
+			document.getElementById('aspect_image_' + id).style.filter = 'brightness(10%)';
 			enabled_flavor_dict[aspect] = false;
 		} else {
 			add_to_aspect_table(aspect);
@@ -951,7 +951,7 @@
 		for (let i = 0; i < keylen(all_aspect_table); i++) {
 			if (!default_aspects.includes(keyAtIndex(all_aspect_table, i))) {
 				remove_from_aspect_table(keyAtIndex(all_aspect_table, i));
-				document.getElementById('aspect_image_' + i).style.filter = 'brightness(25%)';
+				document.getElementById('aspect_image_' + i).style.filter = 'brightness(10%)';
 				enabled_flavor_dict[keyAtIndex(all_aspect_table, i)] = false;
 			}
 		}
