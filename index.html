@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TC Research Solver</title>
+	<!--Thaumcraft research minigame solver using heuristics and bruteforce-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="icon" href="./resources/images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="./resources/css/mainStylesheet.css"/>
+	<link rel="stylesheet" type="text/css" href="./resources/css/solver.css"/>
+</head>
+<body onload="load_aspect_selector()">
+	<div id="wrapper">
+		<div class="article">
+			<h1>Thaumcraft 4 Research Solver</h1>
+			<br>
+			<div id="canvas_selector_wrapper">
+				<canvas id='canvas' onclick="handle_click(event)"></canvas>
+				<div id="aspect_selector_modpack_wrapper">
+					<div id="aspect_selector_gui"></div>
+					<br>
+					<div id="search_modpack_wrapper">
+						<div id="search_wrapper">
+						<label for="search_box">Search: </label>
+						<input id="search_box" type="text" name="search box" oninput="search(this)">
+						</div>
+						<br>
+						<div id="modpack_selector">
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="vanilla_checkbox" type="checkbox" name="Vanilla TC" value="vanilla_tc">
+								<label for="vanilla_checkbox">Vanilla TC</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="forbidden_magic_checkbox" type="checkbox" name="Forbidden Magic" value="forbidden_magic">
+								<label for="forbidden_magic_checkbox">Forbidden Magic</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="gregtech_checkbox" type="checkbox" name="Gregtech" value="gregtech">
+								<label for="gregtech_checkbox">Gregtech</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="magic_bees_checkbox" type="checkbox" name="Magic Bees" value="magic_bees">
+								<label for="magic_bees_checkbox">Magic Bees</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="avaritia_checkbox" type="checkbox" name="Avaritia" value="avaritia">
+								<label for="avaritia_checkbox">Avaritia</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="abyssal_checkbox" type="checkbox" name="AbyssalCraft" value="abyssal">
+								<label for="abyssal_checkbox">AbyssalCraft</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="botanical_checkbox" type="checkbox" name="Botanical Addons" value="botanical">
+								<label for="botanical_checkbox">Botanical Addons</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="elysium_checkbox" type="checkbox" name="The Elysium" value="elysium">
+								<label for="elysium_checkbox">The Elysium</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="revelations_checkbox" type="checkbox" name="Thaumic Revelations" value="revelations">
+								<label for="revelations_checkbox">Thaumic Revelations</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="additions_checkbox" type="checkbox" name="Thaumic Additions" value="additions">
+								<label for="additions_checkbox">Thaumic Additions</label>
+							</div>
+							<div class="input_wrapper" onclick="toggle_aspect_set(this)">
+								<input id="essential_checkbox" type="checkbox" name="Essential Thaumaturgy" value="essential">
+								<label for="essential_checkbox">Essential Thaumaturgy</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h2 id="wait_solving"></h2>
+			<form onsubmit="return false;">
+				<label for="grid_size_input">Grid size: </label>
+				<input class="css-input" type="number" name="Grid size" onchange="resize_grid()" id="grid_size_input" value="5">
+			</form>
+			<br>
+			<button id="barring_button" class="myButton" onclick='mouse_barring_mode()'>Barring mode</button>
+			<br>
+			<button class="myButton" onclick="solve_wrapper()">Solve</button>
+			<br>
+			<button class="myButton" onclick="reset()">Reset</button>
+			<br>
+			<!-- <button class="myButton" onclick="preset()">Preset (demo)</button> -->
+			<h2 id="loading">Please wait, loading aspect images...</h2>
+			<div id="gui_aspect_selector"></div>
+			<br>
+			<h2>How do I use it?</h2>
+			<ul>
+				<li>Drag aspects on the grid to recreate a research note. Drag the images, not the box or text.</li>
+				<li>You can also select a cell and click an aspect image to set it as the cell aspect.</li>
+				<li>You can remove aspects from the grid by simply clicking on them.</li>
+				<li>Use the "Barring mode" button to remove any tiles that can not be used.</li>
+				<li>Toggle the availabilty of an aspect by clicking its text.</li>
+				<li>Even if an aspect can't be used in research, it still can be dragged onto the grid.</li>
+				<li>Click "Solve" and wait. A backtracing algorithm will make your poor CPU work.</li>
+				<li>If you feel like it takes too long, or some kind of error message pops up <strong><i>on the site, not a browser popup (!)</i></strong>, congratulations! You probably discovered a bug! Report your initial aspect setup here: <a href="https://github.com/msalo37/universal_tc_research_solver/issues" target="_blank">github.com/msalo37/universal_tc_research_solver/issues</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="resources/js/solver.js"></script>
+</body>
+</html>
